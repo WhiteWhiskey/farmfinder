@@ -1,0 +1,59 @@
+---
+layout: default
+---
+{% assign state = page.url | remove: "/states/" | remove: "/" | capitalize %}
+{% assign farms = site.data.farms | where: "Location_State", state %}
+
+<div class="container">
+  {% for farm in farms %}
+  {% assign counter = counter | plus: 1 %}
+  {% endfor %}
+
+  <h1 class="text-xs-center">{{ state }}</h1> 
+  <p class="lead text-xs-center">Home to {{ counter }} USDA registered farmers.</p>
+  <hr>
+<ul>
+  {% for farm in farms %}
+    <h3>{{ farm.marketname }}</h3>
+    <p class="lead">{{ farm.Location_City }}, {{ farm.Location_State }}</p>
+    <p>
+      {% if farm.Product_1 == "1" %}Baked goods{% endif %}
+      {% if farm.Product_2 == "1" %}Bedding plants{% endif %}
+      {% if farm.Product_3 == "1" %}Canned preserved{% endif %}
+      {% if farm.Product_4 == "1" %}Coffee/tea{% endif %}
+      {% if farm.Product_5 == "1" %}Crafts/woodworking items{% endif %}
+      {% if farm.Product_6 == "1" %}Cut flowers{% endif %}
+      {% if farm.Product_7 == "1" %}Dairy products{% endif %}
+      {% if farm.Product_8 == "1" %}Dry beans{% endif %}
+      {% if farm.Product_9 == "1" %}Eggs{% endif %}
+      {% if farm.Product_10 == "1" %}Fish/seafood{% endif %}
+      {% if farm.Product_11 == "1" %}Herbs{% endif %}
+      {% if farm.Product_12 == "1" %}Fresh Fruits{% endif %}
+      {% if farm.Product_13 == "1" %}Fresh vegetables{% endif %}
+      {% if farm.Product_14 == "1" %}Grains/flour{% endif %}
+      {% if farm.Product_15 == "1" %}Honey{% endif %}
+      {% if farm.Product_16 == "1" %}Juices/non-alcoholic ciders{% endif %}
+      {% if farm.Product_17 == "1" %}Maple products{% endif %}
+      {% if farm.Product_18 == "1" %}Mushrooms{% endif %}
+      {% if farm.Product_19 == "1" %}Nursery stock{% endif %}
+      {% if farm.Product_20 == "1" %}Nuts{% endif %}
+      {% if farm.Product_21 == "1" %}Pet food{% endif %}
+      {% if farm.Product_22 == "1" %}Poultry/fowl meat/products{% endif %}
+      {% if farm.Product_23 == "1" %}Prepared foods{% endif %}
+      {% if farm.Product_24 == "1" %}Red/non-poultry meat/products{% endif %}
+      {% if farm.Product_25 == "1" %}Soap/body care products{% endif %}
+      {% if farm.Product_26 == "1" %}Tofu/non-animal protein{% endif %}
+      {% if farm.Product_27 == "1" %}Wild harvested forest products{% endif %}
+      {% if farm.Product_28 == "1" %}Wine/spirits/beer/hard cider{% endif %}
+    </p>
+
+    <p>Cash{% if farm.Payment_2 == "1" %}, Checks{% endif %}{% if farm.Payment_3 == "1" %}, Credit Card/Debit{% endif %}{% if farm.Payment_4 == "1" %}, Supplemental Nutrition Assistance Program (SNAP){% endif %}
+    </p>
+
+    <address><a class="btn btn-primary" href="http://maps.google.com/?q={{ farm.Location_ST}} {{ farm.Location_City}} {{ farm.Location_State}} {{ farm.Location_Zip}}">Google Map</a></address>
+    <a href="http://{{ farm.Market_Website | remove: 'http://' }}">{{ farm.Market_Website | remove: "http://" | remove: "www." }}</a>
+    
+    <br><hr>
+    {% endfor %}
+</ul>
+</div>
