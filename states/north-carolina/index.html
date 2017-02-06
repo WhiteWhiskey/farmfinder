@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign state = page.url | remove: "/states/" | remove: "/" | capitalize %}
+{% assign state = "North Carolina" %}
 {% assign farms = site.data.farms | where: "Location_State", state %}
 
 <div class="container">
